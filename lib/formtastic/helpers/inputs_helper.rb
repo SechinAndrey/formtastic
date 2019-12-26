@@ -338,7 +338,7 @@ module Formtastic
         if @object.present? && @object.class.respond_to?(:reflections)
           @object.class.reflections.collect do |name, association_reflection|
             if by_associations.present?
-              if by_associations.include?(association_reflection.macro) && association_reflection.options[:polymorphic] != true
+              if by_associations.include?(association_reflection.class.name.split('::').last.underscore.to_sym) && association_reflection.options[:polymorphic] != true
                 name
               end
             else

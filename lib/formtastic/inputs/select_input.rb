@@ -215,7 +215,7 @@ module Formtastic
       end
 
       def multiple_by_association?
-        reflection && [ :has_many, :has_and_belongs_to_many ].include?(reflection.macro)
+        reflection && [ :has_many, :has_and_belongs_to_many ].include?(reflection.class.name.split('::').last.underscore.to_sym)
       end
 
       def multiple_by_options?
